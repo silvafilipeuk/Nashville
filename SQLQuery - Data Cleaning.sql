@@ -137,5 +137,13 @@ ORDER BY PropertyAddress
 
 ------ Delete Unused Columns
 
+SELECT *
+FROM Nashville
+
+ALTER TABLE Nashville
+DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress
+
+ALTER TABLE Nashville
+DROP COLUMN SaleDate
 
 
