@@ -111,3 +111,31 @@ SET SoldAsVacant = CASE WHEN SoldAsVacant = 'Y' THEN 'Yes'
 
 -- REMOVE DUPLICATES
 
+WITH RowNumCTE AS(
+Select *,
+	ROW_NUMBER() OVER (
+	PARTITION BY ParcelID,
+				 PropertyAddress,
+				 SalePrice,
+				 SaleDate,
+				 LegalReference
+				 ORDER BY
+					UniqueID
+					) row_num
+
+From Nashville
+)
+--DELETE
+--From RowNumCTE
+--Where row_num > 1
+
+SELECT * 
+FROM RowNumCTE
+WHERE row_num > 1
+ORDER BY PropertyAddress
+
+
+------ Delete Unused Columns
+
+
+
